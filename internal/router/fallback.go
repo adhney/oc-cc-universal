@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"oc-go-cc/internal/config"
+	"oc-cc-universal/internal/config"
 )
 
 // CircuitState represents the state of a circuit breaker.

@@ -5,7 +5,7 @@ package router
 import (
 	"fmt"
 
-	"oc-go-cc/internal/config"
+	"oc-cc-universal/internal/config"
 )
 
 // ModelRouter handles model selection based on scenarios.
@@ -38,7 +38,7 @@ func (r *ModelRouter) resolveRequestedModel(cfg *config.Config, requestedModel s
 	if !ok {
 		// Unknown model — create a bare config and inherit defaults
 		primary = config.ModelConfig{
-			Provider: "opencode-go",
+			Provider: "openai",
 			ModelID:  requestedModel,
 		}
 		if def, ok := cfg.Models["default"]; ok {

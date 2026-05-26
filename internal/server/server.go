@@ -11,12 +11,12 @@ import (
 	"syscall"
 	"time"
 
-	"oc-go-cc/internal/client"
-	"oc-go-cc/internal/config"
-	"oc-go-cc/internal/handlers"
-	"oc-go-cc/internal/metrics"
-	"oc-go-cc/internal/router"
-	"oc-go-cc/internal/token"
+	"oc-cc-universal/internal/client"
+	"oc-cc-universal/internal/config"
+	"oc-cc-universal/internal/handlers"
+	"oc-cc-universal/internal/metrics"
+	"oc-cc-universal/internal/router"
+	"oc-cc-universal/internal/token"
 )
 
 // Server represents the proxy server.
@@ -47,13 +47,13 @@ func NewServer(atomic *config.AtomicConfig) (*Server, error) {
 	// Create metrics
 	metrics := metrics.New()
 
-	openCodeClient := client.NewOpenCodeClient(atomic)
+	upstreamClient := client.NewUpstreamClient(atomic)
 	modelRouter := router.NewModelRouter(atomic)
 	fallbackHandler := router.NewFallbackHandler(logger, 3, 30*time.Second)
 
 	// Create handlers.
 	messagesHandler := handlers.NewMessagesHandler(
-		openCodeClient,
+		upstreamClient,
 		modelRouter,
 		fallbackHandler,
 		tokenCounter,
@@ -98,10 +98,10 @@ func NewServer(atomic *config.AtomicConfig) (*Server, error) {
 // Start starts the server with graceful shutdown.
 func (s *Server) Start() error {
 	cfg := s.atomic.Get()
-	s.logger.Info("starting oc-go-cc proxy",
+	s.logger.Info("starting oc-cc-universal proxy",
 		"host", cfg.Host,
 		"port", cfg.Port,
-		"base_url", cfg.OpenCodeGo.BaseURL,
+		"base_url", cfg.Upstream.BaseURL,
 	)
 
 	// Graceful shutdown.

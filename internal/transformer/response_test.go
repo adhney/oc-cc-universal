@@ -3,7 +3,7 @@ package transformer
 import (
 	"testing"
 
-	"oc-go-cc/pkg/types"
+	"oc-cc-universal/pkg/types"
 )
 
 func TestTransformResponsePreservesReasoningContent(t *testing.T) {

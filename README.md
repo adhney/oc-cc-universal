@@ -1,8 +1,8 @@
-# oc-go-cc
+# oc-cc-universal
 
 A Go CLI proxy that lets you use your [OpenCode Go](https://opencode.ai/docs/go/) subscription with [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-`oc-go-cc` sits between Claude Code and OpenCode Go, intercepting Anthropic API requests, transforming them to OpenAI format, and forwarding them to OpenCode Go's endpoint. Claude Code thinks it's talking to Anthropic — but your requests go to affordable open models instead.
+`oc-cc-universal` sits between Claude Code and OpenCode Go, intercepting Anthropic API requests, transforming them to OpenAI format, and forwarding them to OpenCode Go's endpoint. Claude Code thinks it's talking to Anthropic — but your requests go to affordable open models instead.
 
 ## Why?
 
@@ -28,10 +28,10 @@ OpenCode Go gives you access to powerful open coding models for **$5/month** (th
 
 ```bash
 # macOS / Linux
-brew tap samueltuyizere/tap && brew install oc-go-cc
+brew tap samueltuyizere/tap && brew install oc-cc-universal
 
 # Windows
-scoop bucket add oc-go-cc https://github.com/samueltuyizere/scoop-bucket && scoop install oc-go-cc
+scoop bucket add oc-cc-universal https://github.com/samueltuyizere/scoop-bucket && scoop install oc-cc-universal
 ```
 
 Or see [INSTALLATION.md](INSTALLATION.md) for more options.
@@ -39,19 +39,19 @@ Or see [INSTALLATION.md](INSTALLATION.md) for more options.
 ### 2. Initialize Configuration
 
 ```bash
-oc-go-cc init
+oc-cc-universal init
 ```
 
-Creates a default config at `~/.config/oc-go-cc/config.json`. Edit it to add your API key, or set the environment variable:
+Creates a default config at `~/.config/oc-cc-universal/config.json`. Edit it to add your API key, or set the environment variable:
 
 ```bash
-export OC_GO_CC_API_KEY=sk-opencode-your-key-here
+export OC_CC_UNIVERSAL_API_KEY=sk-opencode-your-key-here
 ```
 
 ### 3. Start the Proxy
 
 ```bash
-oc-go-cc serve
+oc-cc-universal serve
 ```
 
 ### 4. Configure Claude Code
@@ -70,18 +70,18 @@ claude
 ## CLI Commands
 
 ```
-oc-go-cc serve              Start the proxy server
-oc-go-cc serve -b           Start in background (detached from terminal)
-oc-go-cc serve --port 8080  Start on a custom port
-oc-go-cc stop               Stop the running proxy server
-oc-go-cc status             Check if the proxy is running
-oc-go-cc init               Create default configuration file
-oc-go-cc validate           Validate configuration file
-oc-go-cc models             List available OpenCode Go models
-oc-go-cc autostart enable   Enable auto-start on login
-oc-go-cc autostart disable  Disable auto-start on login
-oc-go-cc autostart status   Check autostart status
-oc-go-cc --version          Show version
+oc-cc-universal serve              Start the proxy server
+oc-cc-universal serve -b           Start in background (detached from terminal)
+oc-cc-universal serve --port 8080  Start on a custom port
+oc-cc-universal stop               Stop the running proxy server
+oc-cc-universal status             Check if the proxy is running
+oc-cc-universal init               Create default configuration file
+oc-cc-universal validate           Validate configuration file
+oc-cc-universal models             List available OpenCode Go models
+oc-cc-universal autostart enable   Enable auto-start on login
+oc-cc-universal autostart disable  Disable auto-start on login
+oc-cc-universal autostart status   Check autostart status
+oc-cc-universal --version          Show version
 ```
 
 ## Documentation

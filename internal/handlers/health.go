@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"oc-go-cc/internal/metrics"
-	"oc-go-cc/internal/router"
-	"oc-go-cc/internal/token"
-	"oc-go-cc/pkg/types"
+	"oc-cc-universal/internal/metrics"
+	"oc-cc-universal/internal/router"
+	"oc-cc-universal/internal/token"
+	"oc-cc-universal/pkg/types"
 )
 
 // HealthHandler handles health checks and token counting endpoints.
@@ -39,7 +39,7 @@ func (h *HealthHandler) HandleHealth(w http.ResponseWriter, r *http.Request) {
 
 	response := map[string]interface{}{
 		"status":  "ok",
-		"service": "oc-go-cc",
+		"service": "oc-cc-universal",
 		"metrics": map[string]interface{}{
 			"requests_received": snapshot.RequestsReceived,
 			"requests_success":  snapshot.RequestsSuccess,

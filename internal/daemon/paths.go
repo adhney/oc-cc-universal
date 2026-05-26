@@ -10,17 +10,17 @@ import (
 )
 
 const (
-	AppName     = "oc-go-cc"
-	ConfigDir   = ".config/oc-go-cc"
-	LaunchAgent = "com.opencode.oc-go-cc"
+	AppName     = "oc-cc-universal"
+	ConfigDir   = ".config/oc-cc-universal"
+	LaunchAgent = "com.oc-cc-universal"
 )
 
 // Paths holds well-known directories and files for the app.
 type Paths struct {
-	ConfigDir  string // ~/.config/oc-go-cc
-	PIDFile    string // ~/.config/oc-go-cc/oc-go-cc.pid
-	LogFile    string // ~/.config/oc-go-cc/oc-go-cc.log
-	PlistPath  string // ~/Library/LaunchAgents/com.opencode.oc-go-cc.plist
+	ConfigDir  string // ~/.config/oc-cc-universal
+	PIDFile    string // ~/.config/oc-cc-universal/oc-cc-universal.pid
+	LogFile    string // ~/.config/oc-cc-universal/oc-cc-universal.log
+	PlistPath  string // ~/Library/LaunchAgents/com.oc-cc-universal.plist
 	BinaryPath string // absolute path to the running executable
 }
 
@@ -50,7 +50,7 @@ func DefaultPaths() (*Paths, error) {
 	return paths, nil
 }
 
-// EnsureConfigDir creates ~/.config/oc-go-cc/ if it does not exist.
+// EnsureConfigDir creates ~/.config/oc-cc-universal/ if it does not exist.
 func (p *Paths) EnsureConfigDir() error {
 	return os.MkdirAll(p.ConfigDir, 0755)
 }
@@ -74,7 +74,7 @@ func WritePID(pidPath string, pid int) error {
 	return os.WriteFile(pidPath, []byte(fmt.Sprintf("%d", pid)), 0644)
 }
 
-// FindBinary returns the absolute path to the oc-go-cc binary.
+// FindBinary returns the absolute path to the oc-cc-universal binary.
 func FindBinary() (string, error) {
 	// First try to use the current executable
 	execPath, err := os.Executable()
@@ -82,10 +82,10 @@ func FindBinary() (string, error) {
 		return resolveExecutablePath(execPath), nil
 	}
 
-	// Fallback: search PATH for oc-go-cc
+	// Fallback: search PATH for oc-cc-universal
 	execPath, err = exec.LookPath(AppName)
 	if err != nil {
-		return "", fmt.Errorf("cannot find oc-go-cc binary: %w", err)
+		return "", fmt.Errorf("cannot find oc-cc-universal binary: %w", err)
 	}
 	return resolveExecutablePath(execPath), nil
 }

@@ -3,7 +3,7 @@ package router
 import (
 	"testing"
 
-	"oc-go-cc/internal/config"
+	"oc-cc-universal/internal/config"
 )
 
 func newTestAtomicConfig(cfg *config.Config) *config.AtomicConfig {
@@ -15,11 +15,11 @@ func TestRoute_RespectRequestedModel_BypassesScenarioRouting(t *testing.T) {
 		RespectRequestedModel: true,
 		Models: map[string]config.ModelConfig{
 			"default": {
-				Provider: "opencode-go",
+				Provider: "openai",
 				ModelID:  "kimi-k2.6",
 			},
 			"kimi-k2.6": {
-				Provider:         "opencode-go",
+				Provider:         "openai",
 				ModelID:          "kimi-k2.6",
 				Temperature:      0.7,
 				MaxTokens:        4096,
@@ -28,7 +28,7 @@ func TestRoute_RespectRequestedModel_BypassesScenarioRouting(t *testing.T) {
 		},
 		Fallbacks: map[string][]config.ModelConfig{
 			"default": {
-				{Provider: "opencode-go", ModelID: "qwen3.5-plus"},
+				{Provider: "openai", ModelID: "qwen3.5-plus"},
 			},
 		},
 	}
@@ -118,7 +118,7 @@ func TestRoute_RespectRequestedModel_UnknownModel_UsesDefaults(t *testing.T) {
 		RespectRequestedModel: true,
 		Models: map[string]config.ModelConfig{
 			"default": {
-				Provider:    "opencode-go",
+				Provider:    "openai",
 				ModelID:     "kimi-k2.6",
 				Temperature: 0.5,
 				MaxTokens:   8192,
@@ -157,7 +157,7 @@ func TestRouteForStreaming_RespectRequestedModel_BypassesScenarioRouting(t *test
 		Models: map[string]config.ModelConfig{
 			"default": {ModelID: "qwen3.6-plus"},
 			"kimi-k2.6": {
-				Provider: "opencode-go",
+				Provider: "openai",
 				ModelID:  "kimi-k2.6",
 			},
 		},
@@ -213,8 +213,8 @@ func TestResolveRequestedModel_UsesFallbacks(t *testing.T) {
 		},
 		Fallbacks: map[string][]config.ModelConfig{
 			"default": {
-				{Provider: "opencode-go", ModelID: "qwen3.5-plus"},
-				{Provider: "opencode-go", ModelID: "glm-5.1"},
+				{Provider: "openai", ModelID: "qwen3.5-plus"},
+				{Provider: "openai", ModelID: "glm-5.1"},
 			},
 		},
 	}

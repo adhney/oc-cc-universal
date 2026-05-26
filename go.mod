@@ -1,4 +1,4 @@
-module oc-go-cc
+module oc-cc-universal
 
 go 1.25.0
 

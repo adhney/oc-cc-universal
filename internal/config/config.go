@@ -13,7 +13,7 @@ type Config struct {
 	RespectRequestedModel          bool                     `json:"respect_requested_model"`
 	Models                         map[string]ModelConfig   `json:"models"`
 	Fallbacks                      map[string][]ModelConfig `json:"fallbacks"`
-	OpenCodeGo                     OpenCodeGoConfig         `json:"opencode_go"`
+	Upstream                     UpstreamConfig         `json:"upstream"`
 	Logging                        LoggingConfig            `json:"logging"`
 }
 
@@ -28,8 +28,8 @@ type ModelConfig struct {
 	Thinking         json.RawMessage `json:"thinking,omitempty"`
 }
 
-// OpenCodeGoConfig holds the upstream OpenCode Go API settings.
-type OpenCodeGoConfig struct {
+// UpstreamConfig holds the upstream API settings.
+type UpstreamConfig struct {
 	BaseURL          string `json:"base_url"`
 	AnthropicBaseURL string `json:"anthropic_base_url"`
 	TimeoutMs        int    `json:"timeout_ms"`

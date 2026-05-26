@@ -11,19 +11,19 @@ import (
 	"strings"
 	"time"
 
-	"oc-go-cc/internal/client"
-	"oc-go-cc/internal/config"
-	"oc-go-cc/internal/metrics"
-	"oc-go-cc/internal/middleware"
-	"oc-go-cc/internal/router"
-	"oc-go-cc/internal/token"
-	"oc-go-cc/internal/transformer"
-	"oc-go-cc/pkg/types"
+	"oc-cc-universal/internal/client"
+	"oc-cc-universal/internal/config"
+	"oc-cc-universal/internal/metrics"
+	"oc-cc-universal/internal/middleware"
+	"oc-cc-universal/internal/router"
+	"oc-cc-universal/internal/token"
+	"oc-cc-universal/internal/transformer"
+	"oc-cc-universal/pkg/types"
 )
 
 // MessagesHandler handles /v1/messages requests.
 type MessagesHandler struct {
-	client              *client.OpenCodeClient
+	client              *client.UpstreamClient
 	modelRouter         *router.ModelRouter
 	fallbackHandler     *router.FallbackHandler
 	requestTransformer  *transformer.RequestTransformer
@@ -66,14 +66,14 @@ func (w *responseWriter) Flush() {
 
 // NewMessagesHandler creates a new messages handler.
 func NewMessagesHandler(
-	openCodeClient *client.OpenCodeClient,
+	upstreamClient *client.UpstreamClient,
 	modelRouter *router.ModelRouter,
 	fallbackHandler *router.FallbackHandler,
 	tokenCounter *token.Counter,
 	metrics *metrics.Metrics,
 ) *MessagesHandler {
 	return &MessagesHandler{
-		client:              openCodeClient,
+		client:              upstreamClient,
 		modelRouter:         modelRouter,
 		fallbackHandler:     fallbackHandler,
 		requestTransformer:  transformer.NewRequestTransformer(),

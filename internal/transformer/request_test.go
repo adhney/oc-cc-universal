@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"oc-go-cc/internal/config"
-	"oc-go-cc/pkg/types"
+	"oc-cc-universal/internal/config"
+	"oc-cc-universal/pkg/types"
 )
 
 // TestTransformRequestRoundTripReasoning verifies that a DeepSeek response with
@@ -984,7 +984,7 @@ func TestTransformRequestDeepSeekPlaceholderForTextOnlyAssistant(t *testing.T) {
 
 // Regression test for the production failure that motivated this PR.
 //
-// User configured oc-go-cc with a bare DeepSeek model config — no
+// User configured oc-cc-universal with a bare DeepSeek model config — no
 // `thinking` field, no `reasoning_effort`. They ran Claude Code with
 // `effortLevel: xhigh` set globally. Workflow:
 //
