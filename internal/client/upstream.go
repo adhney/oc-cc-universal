@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"time"
 
-	"oc-cc-universal/internal/config"
-	"oc-cc-universal/pkg/types"
+	"claudepass/internal/config"
+	"claudepass/pkg/types"
 )
 
 // UpstreamClient handles communication with upstream API.

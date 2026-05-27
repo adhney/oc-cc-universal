@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"oc-cc-universal/pkg/types"
+	"claudepass/pkg/types"
 )
 
 // mockResponseWriter implements http.ResponseWriter and http.Flusher for testing.

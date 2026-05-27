@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"oc-cc-universal/internal/config"
+	"claudepass/internal/config"
 )
 
 func TestHasComplexPattern_UserMessage(t *testing.T) {

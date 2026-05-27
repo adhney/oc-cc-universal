@@ -10,17 +10,17 @@ import (
 )
 
 const (
-	AppName     = "oc-cc-universal"
-	ConfigDir   = ".config/oc-cc-universal"
-	LaunchAgent = "com.oc-cc-universal"
+	AppName     = "claudepass"
+	ConfigDir   = ".config/claudepass"
+	LaunchAgent = "com.claudepass"
 )
 
 // Paths holds well-known directories and files for the app.
 type Paths struct {
-	ConfigDir  string // ~/.config/oc-cc-universal
-	PIDFile    string // ~/.config/oc-cc-universal/oc-cc-universal.pid
-	LogFile    string // ~/.config/oc-cc-universal/oc-cc-universal.log
-	PlistPath  string // ~/Library/LaunchAgents/com.oc-cc-universal.plist
+	ConfigDir  string // ~/.config/claudepass
+	PIDFile    string // ~/.config/claudepass/claudepass.pid
+	LogFile    string // ~/.config/claudepass/claudepass.log
+	PlistPath  string // ~/Library/LaunchAgents/com.claudepass.plist
 	BinaryPath string // absolute path to the running executable
 }
 
@@ -50,7 +50,7 @@ func DefaultPaths() (*Paths, error) {
 	return paths, nil
 }
 
-// EnsureConfigDir creates ~/.config/oc-cc-universal/ if it does not exist.
+// EnsureConfigDir creates ~/.config/claudepass/ if it does not exist.
 func (p *Paths) EnsureConfigDir() error {
 	return os.MkdirAll(p.ConfigDir, 0755)
 }
@@ -74,7 +74,7 @@ func WritePID(pidPath string, pid int) error {
 	return os.WriteFile(pidPath, []byte(fmt.Sprintf("%d", pid)), 0644)
 }
 
-// FindBinary returns the absolute path to the oc-cc-universal binary.
+// FindBinary returns the absolute path to the claudepass binary.
 func FindBinary() (string, error) {
 	// First try to use the current executable
 	execPath, err := os.Executable()
@@ -82,10 +82,10 @@ func FindBinary() (string, error) {
 		return resolveExecutablePath(execPath), nil
 	}
 
-	// Fallback: search PATH for oc-cc-universal
+	// Fallback: search PATH for claudepass
 	execPath, err = exec.LookPath(AppName)
 	if err != nil {
-		return "", fmt.Errorf("cannot find oc-cc-universal binary: %w", err)
+		return "", fmt.Errorf("cannot find claudepass binary: %w", err)
 	}
 	return resolveExecutablePath(execPath), nil
 }

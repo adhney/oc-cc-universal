@@ -1,4 +1,4 @@
-module oc-cc-universal
+module claudepass
 
 go 1.25.0
 

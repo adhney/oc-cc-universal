@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"oc-cc-universal/pkg/types"
+	"claudepass/pkg/types"
 )
 
 // ResponseTransformer converts OpenAI responses to Anthropic format.

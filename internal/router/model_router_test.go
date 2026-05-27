@@ -3,7 +3,7 @@ package router
 import (
 	"testing"
 
-	"oc-cc-universal/internal/config"
+	"claudepass/internal/config"
 )
 
 func newTestAtomicConfig(cfg *config.Config) *config.AtomicConfig {

@@ -11,12 +11,12 @@ import (
 	"syscall"
 	"time"
 
-	"oc-cc-universal/internal/client"
-	"oc-cc-universal/internal/config"
-	"oc-cc-universal/internal/handlers"
-	"oc-cc-universal/internal/metrics"
-	"oc-cc-universal/internal/router"
-	"oc-cc-universal/internal/token"
+	"claudepass/internal/client"
+	"claudepass/internal/config"
+	"claudepass/internal/handlers"
+	"claudepass/internal/metrics"
+	"claudepass/internal/router"
+	"claudepass/internal/token"
 )
 
 // Server represents the proxy server.
@@ -98,7 +98,7 @@ func NewServer(atomic *config.AtomicConfig) (*Server, error) {
 // Start starts the server with graceful shutdown.
 func (s *Server) Start() error {
 	cfg := s.atomic.Get()
-	s.logger.Info("starting oc-cc-universal proxy",
+	s.logger.Info("starting claudepass proxy",
 		"host", cfg.Host,
 		"port", cfg.Port,
 		"base_url", cfg.Upstream.BaseURL,

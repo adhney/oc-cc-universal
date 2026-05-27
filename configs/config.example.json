@@ -1,5 +1,5 @@
 {
-  "api_key": "${OC_CC_UNIVERSAL_API_KEY}",
+  "api_key": "${CLAUDEPASS_API_KEY}",
   "host": "127.0.0.1",
   "port": 3456,
   "hot_reload": false,

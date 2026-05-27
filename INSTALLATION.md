@@ -4,50 +4,50 @@
 
 ```bash
 brew tap samueltuyizere/tap
-brew install oc-cc-universal
+brew install claudepass
 ```
 
 ## Scoop (Windows)
 
 ```powershell
-scoop bucket add oc-cc-universal https://github.com/samueltuyizere/scoop-bucket
-scoop install oc-cc-universal
+scoop bucket add claudepass https://github.com/samueltuyizere/scoop-bucket
+scoop install claudepass
 ```
 
 ## Build from Source
 
 ```bash
-git clone https://github.com/samueltuyizere/oc-cc-universal.git
-cd oc-cc-universal
+git clone https://github.com/samueltuyizere/claudepass.git
+cd claudepass
 make build
 
-# Binary is at bin/oc-cc-universal
+# Binary is at bin/claudepass
 # Optionally install to $GOPATH/bin
 make install
 ```
 
 ## Download a Release Binary
 
-Download the latest release for your platform from the [Releases page](https://github.com/samueltuyizere/oc-cc-universal/releases):
+Download the latest release for your platform from the [Releases page](https://github.com/samueltuyizere/claudepass/releases):
 
 | Platform              | File                         |
 | --------------------- | ---------------------------- |
-| macOS (Apple Silicon) | `oc-cc-universal_darwin-arm64`      |
-| macOS (Intel)         | `oc-cc-universal_darwin-amd64`      |
-| Linux (x86_64)        | `oc-cc-universal_linux-amd64`       |
-| Linux (ARM64)         | `oc-cc-universal_linux-arm64`       |
-| Windows (x86_64)      | `oc-cc-universal_windows-amd64.exe` |
-| Windows (ARM64)       | `oc-cc-universal_windows-arm64.exe` |
+| macOS (Apple Silicon) | `claudepass_darwin-arm64`      |
+| macOS (Intel)         | `claudepass_darwin-amd64`      |
+| Linux (x86_64)        | `claudepass_linux-amd64`       |
+| Linux (ARM64)         | `claudepass_linux-arm64`       |
+| Windows (x86_64)      | `claudepass_windows-amd64.exe` |
+| Windows (ARM64)       | `claudepass_windows-arm64.exe` |
 
 ```bash
 # macOS Apple Silicon
-curl -L -o oc-cc-universal https://github.com/samueltuyizere/oc-cc-universal/releases/latest/download/oc-cc-universal_darwin-arm64
-chmod +x oc-cc-universal
-sudo mv oc-cc-universal /usr/local/bin/
+curl -L -o claudepass https://github.com/samueltuyizere/claudepass/releases/latest/download/claudepass_darwin-arm64
+chmod +x claudepass
+sudo mv claudepass /usr/local/bin/
 
 # Windows (PowerShell)
-Invoke-WebRequest -Uri "https://github.com/samueltuyizere/oc-cc-universal/releases/latest/download/oc-cc-universal_windows-amd64.exe" -OutFile "oc-cc-universal.exe"
-Move-Item -Path "oc-cc-universal.exe" -Destination "$env:LOCALAPPDATA\Microsoft\WindowsApps\oc-cc-universal.exe"
+Invoke-WebRequest -Uri "https://github.com/samueltuyizere/claudepass/releases/latest/download/claudepass_windows-amd64.exe" -OutFile "claudepass.exe"
+Move-Item -Path "claudepass.exe" -Destination "$env:LOCALAPPDATA\Microsoft\WindowsApps\claudepass.exe"
 ```
 
 ## Requirements

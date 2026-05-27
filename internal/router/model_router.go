@@ -5,7 +5,7 @@ package router
 import (
 	"fmt"
 
-	"oc-cc-universal/internal/config"
+	"claudepass/internal/config"
 )
 
 // ModelRouter handles model selection based on scenarios.

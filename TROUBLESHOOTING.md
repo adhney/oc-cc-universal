@@ -2,7 +2,7 @@
 
 ## Windows Scoop Background Mode
 
-On Windows, `oc-cc-universal serve -b` uses the native Windows process APIs and keeps
+On Windows, `claudepass serve -b` uses the native Windows process APIs and keeps
 the Scoop shim path intact. This means background mode does not require `nohup`
 or a Unix-like shell, and Scoop-provided environment variables continue to work.
 
@@ -17,23 +17,23 @@ This means the proxy couldn't parse the request from Claude Code. Enable debug l
 Or set the environment variable:
 
 ```bash
-export OC_CC_UNIVERSAL_LOG_LEVEL=debug
+export CLAUDEPASS_LOG_LEVEL=debug
 ```
 
 ## "all models failed" Error
 
 All models in the fallback chain returned errors. Check:
 
-1. Your API key is valid: `oc-cc-universal validate`
+1. Your API key is valid: `claudepass validate`
 2. You haven't exceeded your [usage limits](https://opencode.ai/auth)
-3. The OpenCode Go service is reachable: `curl -H "Authorization: Bearer $OC_CC_UNIVERSAL_API_KEY" https://opencode.ai/zen/go/v1/models`
+3. The OpenCode Go service is reachable: `curl -H "Authorization: Bearer $CLAUDEPASS_API_KEY" https://opencode.ai/zen/go/v1/models`
 
 ## Connection Refused
 
 Make sure the proxy is running:
 
 ```bash
-oc-cc-universal status
+claudepass status
 ```
 
 And Claude Code is pointing to the right address:
@@ -55,7 +55,7 @@ The proxy transforms OpenAI SSE to Anthropic SSE in real-time. If streaming appe
 For maximum logging, run with debug level:
 
 ```bash
-OC_CC_UNIVERSAL_LOG_LEVEL=debug oc-cc-universal serve
+CLAUDEPASS_LOG_LEVEL=debug claudepass serve
 ```
 
 This logs:

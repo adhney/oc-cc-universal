@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	defaultConfigPath       = "~/.config/oc-cc-universal/config.json"
+	defaultConfigPath       = "~/.config/claudepass/config.json"
 	defaultHost             = "127.0.0.1"
 	defaultPort             = 3456
 	defaultBaseURL          = "https://api.openai.com/v1/chat/completions"
@@ -25,8 +25,8 @@ var envVarPattern = regexp.MustCompile(`\$\{([A-Za-z0-9_]+)\}`)
 
 // Load reads configuration from a JSON file and applies environment variable overrides.
 // Config path resolution:
-//  1. OC_CC_UNIVERSAL_CONFIG env var (explicit override)
-//  2. ~/.config/oc-cc-universal/config.json (default)
+//  1. CLAUDEPASS_CONFIG env var (explicit override)
+//  2. ~/.config/claudepass/config.json (default)
 func Load() (*Config, error) {
 	return LoadFromPath(ResolveConfigPath())
 }
@@ -50,7 +50,7 @@ func LoadFromPath(path string) (*Config, error) {
 
 // ResolveConfigPath determines which config file to load.
 func ResolveConfigPath() string {
-	if path := os.Getenv("OC_CC_UNIVERSAL_CONFIG"); path != "" {
+	if path := os.Getenv("CLAUDEPASS_CONFIG"); path != "" {
 		return path
 	}
 	return expandHome(defaultConfigPath)
@@ -101,21 +101,21 @@ func interpolateEnvVars(s string) string {
 
 // applyEnvOverrides applies environment variable overrides to the config.
 func applyEnvOverrides(cfg *Config) {
-	if v := os.Getenv("OC_CC_UNIVERSAL_API_KEY"); v != "" {
+	if v := os.Getenv("CLAUDEPASS_API_KEY"); v != "" {
 		cfg.APIKey = v
 	}
-	if v := os.Getenv("OC_CC_UNIVERSAL_HOST"); v != "" {
+	if v := os.Getenv("CLAUDEPASS_HOST"); v != "" {
 		cfg.Host = v
 	}
-	if v := os.Getenv("OC_CC_UNIVERSAL_PORT"); v != "" {
+	if v := os.Getenv("CLAUDEPASS_PORT"); v != "" {
 		if port, err := strconv.Atoi(v); err == nil {
 			cfg.Port = port
 		}
 	}
-	if v := os.Getenv("OC_CC_UNIVERSAL_BASE_URL"); v != "" {
+	if v := os.Getenv("CLAUDEPASS_BASE_URL"); v != "" {
 		cfg.Upstream.BaseURL = v
 	}
-	if v := os.Getenv("OC_CC_UNIVERSAL_LOG_LEVEL"); v != "" {
+	if v := os.Getenv("CLAUDEPASS_LOG_LEVEL"); v != "" {
 		cfg.Logging.Level = v
 	}
 }
@@ -145,7 +145,7 @@ func applyDefaults(cfg *Config) {
 // validate checks that all required configuration fields are present.
 func validate(cfg *Config) error {
 	if cfg.APIKey == "" {
-		return fmt.Errorf("api_key is required (set via config file or OC_CC_UNIVERSAL_API_KEY env var)")
+		return fmt.Errorf("api_key is required (set via config file or CLAUDEPASS_API_KEY env var)")
 	}
 	return nil
 }

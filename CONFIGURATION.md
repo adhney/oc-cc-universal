@@ -2,15 +2,15 @@
 
 ## Config File
 
-Location: `~/.config/oc-cc-universal/config.json`
+Location: `~/.config/claudepass/config.json`
 
-Override with `OC_CC_UNIVERSAL_CONFIG` environment variable.
+Override with `CLAUDEPASS_CONFIG` environment variable.
 
 ## Full Config Reference
 
 ```json
 {
-  "api_key": "${OC_CC_UNIVERSAL_API_KEY}",
+  "api_key": "${CLAUDEPASS_API_KEY}",
   "host": "127.0.0.1",
   "port": 3456,
   "hot_reload": false,
@@ -84,12 +84,12 @@ Environment variables override config file values. Config values also support `$
 
 | Variable                | Description                                 | Default                                          |
 | ----------------------- | ------------------------------------------- | ------------------------------------------------ |
-| `OC_CC_UNIVERSAL_API_KEY`      | OpenCode Go API key (**required**)          | —                                                |
-| `OC_CC_UNIVERSAL_CONFIG`       | Custom config file path                     | `~/.config/oc-cc-universal/config.json`                 |
-| `OC_CC_UNIVERSAL_HOST`         | Proxy listen host                           | `127.0.0.1`                                      |
-| `OC_CC_UNIVERSAL_PORT`         | Proxy listen port                           | `3456`                                           |
-| `OC_CC_UNIVERSAL_BASE_URL` | OpenCode Go API endpoint                    | `https://opencode.ai/zen/go/v1/chat/completions` |
-| `OC_CC_UNIVERSAL_LOG_LEVEL`    | Log level: `debug`, `info`, `warn`, `error` | `info`                                           |
+| `CLAUDEPASS_API_KEY`      | OpenCode Go API key (**required**)          | —                                                |
+| `CLAUDEPASS_CONFIG`       | Custom config file path                     | `~/.config/claudepass/config.json`                 |
+| `CLAUDEPASS_HOST`         | Proxy listen host                           | `127.0.0.1`                                      |
+| `CLAUDEPASS_PORT`         | Proxy listen port                           | `3456`                                           |
+| `CLAUDEPASS_BASE_URL` | OpenCode Go API endpoint                    | `https://opencode.ai/zen/go/v1/chat/completions` |
+| `CLAUDEPASS_LOG_LEVEL`    | Log level: `debug`, `info`, `warn`, `error` | `info`                                           |
 
 ## Hot Reload
 

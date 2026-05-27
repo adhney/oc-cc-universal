@@ -7,8 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"oc-cc-universal/internal/metrics"
-	"oc-cc-universal/internal/token"
+	"claudepass/internal/metrics"
+	"claudepass/internal/token"
 )
 
 func TestHandleCountTokensSupportsAnthropicContentBlocks(t *testing.T) {

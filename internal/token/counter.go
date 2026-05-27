@@ -16,7 +16,7 @@ type Counter struct {
 
 // defaultCacheDir returns a user-writable cache directory for tiktoken files.
 // Uses TIKTOKEN_CACHE_DIR or DATA_GYM_CACHE_DIR if already set; otherwise
-// defaults to ~/.cache/oc-cc-universal/tiktoken to avoid /tmp permission issues.
+// defaults to ~/.cache/claudepass/tiktoken to avoid /tmp permission issues.
 func defaultCacheDir() string {
 	if d := os.Getenv("TIKTOKEN_CACHE_DIR"); d != "" {
 		return d
@@ -28,7 +28,7 @@ func defaultCacheDir() string {
 	if err != nil {
 		return filepath.Join(os.TempDir(), "data-gym-cache")
 	}
-	return filepath.Join(home, ".cache", "oc-cc-universal", "tiktoken")
+	return filepath.Join(home, ".cache", "claudepass", "tiktoken")
 }
 
 // NewCounter creates a new token counter with cl100k_base encoding.

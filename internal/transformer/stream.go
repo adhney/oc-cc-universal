@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"oc-cc-universal/pkg/types"
+	"claudepass/pkg/types"
 )
 
 // ErrClientDisconnected is returned when the client disconnects during streaming.

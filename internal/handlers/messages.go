@@ -11,14 +11,14 @@ import (
 	"strings"
 	"time"
 
-	"oc-cc-universal/internal/client"
-	"oc-cc-universal/internal/config"
-	"oc-cc-universal/internal/metrics"
-	"oc-cc-universal/internal/middleware"
-	"oc-cc-universal/internal/router"
-	"oc-cc-universal/internal/token"
-	"oc-cc-universal/internal/transformer"
-	"oc-cc-universal/pkg/types"
+	"claudepass/internal/client"
+	"claudepass/internal/config"
+	"claudepass/internal/metrics"
+	"claudepass/internal/middleware"
+	"claudepass/internal/router"
+	"claudepass/internal/token"
+	"claudepass/internal/transformer"
+	"claudepass/pkg/types"
 )
 
 // MessagesHandler handles /v1/messages requests.

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"oc-cc-universal/internal/config"
-	"oc-cc-universal/pkg/types"
+	"claudepass/internal/config"
+	"claudepass/pkg/types"
 )
 
 // RequestTransformer converts Anthropic requests to OpenAI format.

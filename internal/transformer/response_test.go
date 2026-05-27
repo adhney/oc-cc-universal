@@ -3,7 +3,7 @@ package transformer
 import (
 	"testing"
 
-	"oc-cc-universal/pkg/types"
+	"claudepass/pkg/types"
 )
 
 func TestTransformResponsePreservesReasoningContent(t *testing.T) {

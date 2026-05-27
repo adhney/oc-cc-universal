@@ -31,14 +31,14 @@ Run a single test: `go test ./internal/router/ -v`
 
 ```
 ┌─────────────┐     Anthropic API      ┌─────────────┐     OpenAI API       ┌─────────────┐
-│  Claude Code ├──────────────────────►│  oc-cc-universal    ├────────────────────►│  OpenCode Go │
+│  Claude Code ├──────────────────────►│  claudepass    ├────────────────────►│  OpenCode Go │
 │  (CLI)       │  POST /v1/messages   │  (Proxy)     │  /chat/completions  │  (Upstream)  │
 │              │◄──────────────────────┤              │◄────────────────────┤              │
 └─────────────┘   Anthropic SSE        └─────────────┘   OpenAI SSE          └─────────────┘
 ```
 
 1. Claude Code sends a request in [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) format
-2. oc-cc-universal parses the request, counts tokens, and selects a model via routing rules
+2. claudepass parses the request, counts tokens, and selects a model via routing rules
 3. The request is transformed to [OpenAI Chat Completions](https://platform.openai.com/docs/api-reference/chat) format
 4. The transformed request is sent to OpenCode Go's endpoint
 5. The response (streaming or non-streaming) is transformed back to Anthropic format
@@ -75,7 +75,7 @@ For Claude Code and other agentic coding workflows, configure DeepSeek V4 models
 }
 ```
 
-`oc-cc-universal` forwards these fields to OpenCode Go as OpenAI Chat Completions parameters:
+`claudepass` forwards these fields to OpenCode Go as OpenAI Chat Completions parameters:
 
 - `reasoning_effort`: controls DeepSeek V4 thinking effort (`high` or `max`)
 - `thinking`: enables or disables DeepSeek V4 thinking mode
@@ -85,7 +85,7 @@ DeepSeek V4 thinking responses are returned as OpenAI `reasoning_content` and tr
 ## Architecture
 
 ```
-cmd/oc-cc-universal/main.go           CLI entry point (cobra commands)
+cmd/claudepass/main.go           CLI entry point (cobra commands)
 internal/
 ├── config/
 │   ├── config.go               Config types
@@ -125,7 +125,7 @@ configs/
 - **Polymorphic field handling**: Anthropic's `system` and `content` fields accept both strings and arrays. We use `json.RawMessage` with accessor methods (`SystemText()`, `ContentBlocks()`) to handle both formats correctly.
 - **Real-time stream proxying**: SSE events are transformed in-flight, not buffered. This means Claude Code sees responses as they arrive from OpenCode Go.
 - **Circuit breaker per model**: Each model gets its own circuit breaker. After 3 consecutive failures, the model is skipped for 30 seconds, then tested again.
-- **Environment variable interpolation**: Config values like `"${OC_CC_UNIVERSAL_API_KEY}"` are resolved at load time, so you never need to put secrets in the config file.
+- **Environment variable interpolation**: Config values like `"${CLAUDEPASS_API_KEY}"` are resolved at load time, so you never need to put secrets in the config file.
 
 ## API Endpoints
 

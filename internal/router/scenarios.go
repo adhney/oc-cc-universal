@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"oc-cc-universal/internal/config"
+	"claudepass/internal/config"
 )
 
 // Scenario represents the routing scenario for model selection.

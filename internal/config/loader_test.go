@@ -28,13 +28,13 @@ func TestLoadJSON(t *testing.T) {
 		t.Fatalf("failed to write test config: %v", err)
 	}
 
-	_ = os.Setenv("OC_CC_UNIVERSAL_CONFIG", cfgPath)
-	defer func() { _ = os.Unsetenv("OC_CC_UNIVERSAL_CONFIG") }()
+	_ = os.Setenv("CLAUDEPASS_CONFIG", cfgPath)
+	defer func() { _ = os.Unsetenv("CLAUDEPASS_CONFIG") }()
 
 	// Prevent env var API key from overriding test config
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	cfg, err := Load()
 	if err != nil {
@@ -73,13 +73,13 @@ func TestLoadMissingAPIKey(t *testing.T) {
 		t.Fatalf("failed to write test config: %v", err)
 	}
 
-	_ = os.Setenv("OC_CC_UNIVERSAL_CONFIG", cfgPath)
-	defer func() { _ = os.Unsetenv("OC_CC_UNIVERSAL_CONFIG") }()
+	_ = os.Setenv("CLAUDEPASS_CONFIG", cfgPath)
+	defer func() { _ = os.Unsetenv("CLAUDEPASS_CONFIG") }()
 
 	// Prevent env var API key from making this test pass incorrectly
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	_, err := Load()
 	if err == nil {
@@ -96,19 +96,19 @@ func TestEnvOverrides(t *testing.T) {
 		t.Fatalf("failed to write test config: %v", err)
 	}
 
-	_ = os.Setenv("OC_CC_UNIVERSAL_CONFIG", cfgPath)
-	_ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", "env-key")
-	_ = os.Setenv("OC_CC_UNIVERSAL_HOST", "env-host")
-	_ = os.Setenv("OC_CC_UNIVERSAL_PORT", "9999")
-	_ = os.Setenv("OC_CC_UNIVERSAL_BASE_URL", "https://env-url/v1")
-	_ = os.Setenv("OC_CC_UNIVERSAL_LOG_LEVEL", "warn")
+	_ = os.Setenv("CLAUDEPASS_CONFIG", cfgPath)
+	_ = os.Setenv("CLAUDEPASS_API_KEY", "env-key")
+	_ = os.Setenv("CLAUDEPASS_HOST", "env-host")
+	_ = os.Setenv("CLAUDEPASS_PORT", "9999")
+	_ = os.Setenv("CLAUDEPASS_BASE_URL", "https://env-url/v1")
+	_ = os.Setenv("CLAUDEPASS_LOG_LEVEL", "warn")
 	defer func() {
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_CONFIG")
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_HOST")
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_PORT")
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_BASE_URL")
-		_ = os.Unsetenv("OC_CC_UNIVERSAL_LOG_LEVEL")
+		_ = os.Unsetenv("CLAUDEPASS_CONFIG")
+		_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+		_ = os.Unsetenv("CLAUDEPASS_HOST")
+		_ = os.Unsetenv("CLAUDEPASS_PORT")
+		_ = os.Unsetenv("CLAUDEPASS_BASE_URL")
+		_ = os.Unsetenv("CLAUDEPASS_LOG_LEVEL")
 	}()
 
 	cfg, err := Load()
@@ -143,8 +143,8 @@ func TestDefaults(t *testing.T) {
 		t.Fatalf("failed to write test config: %v", err)
 	}
 
-	_ = os.Setenv("OC_CC_UNIVERSAL_CONFIG", cfgPath)
-	defer func() { _ = os.Unsetenv("OC_CC_UNIVERSAL_CONFIG") }()
+	_ = os.Setenv("CLAUDEPASS_CONFIG", cfgPath)
+	defer func() { _ = os.Unsetenv("CLAUDEPASS_CONFIG") }()
 
 	cfg, err := Load()
 	if err != nil {

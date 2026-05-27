@@ -1,8 +1,8 @@
-# oc-cc-universal
+# claudepass
 
 A universal Go proxy that lets you use **any OpenAI-compatible backend** with [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-`oc-cc-universal` sits between Claude Code and your backend, intercepting Anthropic API requests, transforming them to OpenAI format, and forwarding them upstream. Claude Code thinks it's talking to Anthropic — but your requests go to whatever backend you choose.
+`claudepass` sits between Claude Code and your backend, intercepting Anthropic API requests, transforming them to OpenAI format, and forwarding them upstream. Claude Code thinks it's talking to Anthropic — but your requests go to whatever backend you choose.
 
 Works with: **OpenCode Go**, **Ollama**, **OpenRouter**, **vLLM**, **LiteLLM**, **Azure OpenAI**, **GCP Vertex AI**, or any `/v1/chat/completions` endpoint.
 
@@ -32,29 +32,29 @@ Claude Code only speaks Anthropic's API format. This proxy translates everything
 ### 1. Build from Source
 
 ```bash
-git clone https://github.com/adhney/oc-cc-universal.git
-cd oc-cc-universal
-go build -o oc-cc-universal ./cmd/oc-cc-universal/
-sudo mv oc-cc-universal /usr/local/bin/
+git clone https://github.com/adhney/claudepass.git
+cd claudepass
+go build -o claudepass ./cmd/claudepass/
+sudo mv claudepass /usr/local/bin/
 ```
 
 ### 2. Initialize Configuration
 
 ```bash
-oc-cc-universal init
+claudepass init
 ```
 
-Creates a default config at `~/.config/oc-cc-universal/config.json`. Edit it to set your backend URL and API key:
+Creates a default config at `~/.config/claudepass/config.json`. Edit it to set your backend URL and API key:
 
 ```bash
-export OC_CC_UNIVERSAL_API_KEY=your-api-key
-export OC_CC_UNIVERSAL_BASE_URL=https://your-backend.example.com/v1/chat/completions
+export CLAUDEPASS_API_KEY=your-api-key
+export CLAUDEPASS_BASE_URL=https://your-backend.example.com/v1/chat/completions
 ```
 
 ### 3. Start the Proxy
 
 ```bash
-oc-cc-universal serve
+claudepass serve
 ```
 
 ### 4. Configure Claude Code
@@ -74,49 +74,49 @@ claude
 
 | Variable | Description | Default |
 | -------- | ----------- | ------- |
-| `OC_CC_UNIVERSAL_API_KEY` | API key for your backend (**required**) | — |
-| `OC_CC_UNIVERSAL_BASE_URL` | Full URL to your `/v1/chat/completions` endpoint | `https://api.openai.com/v1/chat/completions` |
-| `OC_CC_UNIVERSAL_HOST` | Proxy listen host | `127.0.0.1` |
-| `OC_CC_UNIVERSAL_PORT` | Proxy listen port | `3456` |
-| `OC_CC_UNIVERSAL_CONFIG` | Custom config file path | `~/.config/oc-cc-universal/config.json` |
-| `OC_CC_UNIVERSAL_LOG_LEVEL` | Log level: `debug`, `info`, `warn`, `error` | `info` |
+| `CLAUDEPASS_API_KEY` | API key for your backend (**required**) | — |
+| `CLAUDEPASS_BASE_URL` | Full URL to your `/v1/chat/completions` endpoint | `https://api.openai.com/v1/chat/completions` |
+| `CLAUDEPASS_HOST` | Proxy listen host | `127.0.0.1` |
+| `CLAUDEPASS_PORT` | Proxy listen port | `3456` |
+| `CLAUDEPASS_CONFIG` | Custom config file path | `~/.config/claudepass/config.json` |
+| `CLAUDEPASS_LOG_LEVEL` | Log level: `debug`, `info`, `warn`, `error` | `info` |
 
 ## CLI Commands
 
 ```
-oc-cc-universal serve              Start the proxy server
-oc-cc-universal serve -b           Start in background (detached from terminal)
-oc-cc-universal serve --port 8080  Start on a custom port
-oc-cc-universal stop               Stop the running proxy server
-oc-cc-universal status             Check if the proxy is running
-oc-cc-universal init               Create default configuration file
-oc-cc-universal validate           Validate configuration file
-oc-cc-universal models             List configured model scenarios
-oc-cc-universal autostart enable   Enable auto-start on login
-oc-cc-universal autostart disable  Disable auto-start on login
-oc-cc-universal autostart status   Check autostart status
-oc-cc-universal --version          Show version
+claudepass serve              Start the proxy server
+claudepass serve -b           Start in background (detached from terminal)
+claudepass serve --port 8080  Start on a custom port
+claudepass stop               Stop the running proxy server
+claudepass status             Check if the proxy is running
+claudepass init               Create default configuration file
+claudepass validate           Validate configuration file
+claudepass models             List configured model scenarios
+claudepass autostart enable   Enable auto-start on login
+claudepass autostart disable  Disable auto-start on login
+claudepass autostart status   Check autostart status
+claudepass --version          Show version
 ```
 
 ## Example: GCP Vertex AI
 
 ```bash
-export OC_CC_UNIVERSAL_API_KEY=your-vertex-key
-export OC_CC_UNIVERSAL_BASE_URL=https://your-project.endpoints.your-region.cloud.goog/v1/chat/completions
+export CLAUDEPASS_API_KEY=your-vertex-key
+export CLAUDEPASS_BASE_URL=https://your-project.endpoints.your-region.cloud.goog/v1/chat/completions
 export ANTHROPIC_BASE_URL=http://127.0.0.1:3456
 export ANTHROPIC_AUTH_TOKEN=unused
-oc-cc-universal serve
+claudepass serve
 claude
 ```
 
 ## Example: Ollama (Local)
 
 ```bash
-export OC_CC_UNIVERSAL_API_KEY=unused
-export OC_CC_UNIVERSAL_BASE_URL=http://localhost:11434/v1/chat/completions
+export CLAUDEPASS_API_KEY=unused
+export CLAUDEPASS_BASE_URL=http://localhost:11434/v1/chat/completions
 export ANTHROPIC_BASE_URL=http://127.0.0.1:3456
 export ANTHROPIC_AUTH_TOKEN=unused
-oc-cc-universal serve
+claudepass serve
 claude
 ```
 
@@ -131,7 +131,7 @@ claude
 
 ## Credits
 
-Forked from [samueltuyizere/oc-go-cc](https://github.com/samueltuyizere/oc-go-cc) and generalized to work with any OpenAI-compatible backend.
+Forked from [samueltuyizere/claudepass](https://github.com/samueltuyizere/claudepass) and generalized to work with any OpenAI-compatible backend.
 
 ## License
 

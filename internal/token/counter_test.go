@@ -26,7 +26,7 @@ func TestDefaultCacheDir(t *testing.T) {
 		},
 		{
 			name: "falls back to home cache",
-			want: filepath.Join(mustHome(), ".cache", "oc-cc-universal", "tiktoken"),
+			want: filepath.Join(mustHome(), ".cache", "claudepass", "tiktoken"),
 		},
 	}
 

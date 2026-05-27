@@ -3,5 +3,5 @@ bin/
 *.pid
 .env
 .tmp/
-oc-go-cc
-oc-cc-universal
+claudepass
+claudepass

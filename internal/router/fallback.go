@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"oc-cc-universal/internal/config"
+	"claudepass/internal/config"
 )
 
 // CircuitState represents the state of a circuit breaker.

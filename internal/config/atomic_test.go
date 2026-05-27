@@ -19,9 +19,9 @@ func TestAtomicConfig_Get(t *testing.T) {
 }
 
 func TestAtomicConfig_Reload(t *testing.T) {
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.json")
@@ -57,9 +57,9 @@ func TestAtomicConfig_Reload(t *testing.T) {
 }
 
 func TestAtomicConfig_Reload_PreservesOldOnError(t *testing.T) {
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.json")
@@ -92,9 +92,9 @@ func TestAtomicConfig_Reload_PreservesOldOnError(t *testing.T) {
 }
 
 func TestAtomicConfig_OnReload(t *testing.T) {
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.json")
@@ -136,9 +136,9 @@ func TestAtomicConfig_OnReload(t *testing.T) {
 }
 
 func TestAtomicConfig_OnReload_MultipleCallbacks(t *testing.T) {
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.json")
@@ -178,9 +178,9 @@ func TestAtomicConfig_OnReload_MultipleCallbacks(t *testing.T) {
 }
 
 func TestAtomicConfig_ConcurrentGetAndReload(t *testing.T) {
-	oldAPIKey := os.Getenv("OC_CC_UNIVERSAL_API_KEY")
-	_ = os.Unsetenv("OC_CC_UNIVERSAL_API_KEY")
-	defer func() { _ = os.Setenv("OC_CC_UNIVERSAL_API_KEY", oldAPIKey) }()
+	oldAPIKey := os.Getenv("CLAUDEPASS_API_KEY")
+	_ = os.Unsetenv("CLAUDEPASS_API_KEY")
+	defer func() { _ = os.Setenv("CLAUDEPASS_API_KEY", oldAPIKey) }()
 
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.json")

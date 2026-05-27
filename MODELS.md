@@ -23,16 +23,16 @@ Comprehensive guide to OpenCode Go models with capabilities, costs, and routing 
 
 ## Important: API Endpoints
 
-⚠️ **Critical:** Not all models use the same API endpoint! oc-cc-universal handles this automatically, but you should know:
+⚠️ **Critical:** Not all models use the same API endpoint! claudepass handles this automatically, but you should know:
 
 | Models                                                                                                             | Endpoint                                         | Format                   |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ------------------------ |
 | GLM-5, GLM-5.1, Kimi K2.6, Kimi K2.5, MiMo-V2-Pro, MiMo-V2-Omni, Qwen3.5 Plus, Qwen3.6 Plus, DeepSeek V4 Pro/Flash | `https://opencode.ai/zen/go/v1/chat/completions` | OpenAI-compatible        |
 | **MiniMax M2.5, MiniMax M2.7**                                                                                     | `https://opencode.ai/zen/go/v1/messages`         | **Anthropic-compatible** |
 
-**Why this matters:** MiniMax models expect Anthropic format natively. oc-cc-universal detects MiniMax models and routes them to the correct endpoint automatically without transformation. This means MiniMax models work seamlessly with Claude Code.
+**Why this matters:** MiniMax models expect Anthropic format natively. claudepass detects MiniMax models and routes them to the correct endpoint automatically without transformation. This means MiniMax models work seamlessly with Claude Code.
 
-DeepSeek V4 Pro and Flash are OpenAI-compatible in OpenCode Go. oc-cc-universal transforms Claude Code's Anthropic request into OpenAI Chat Completions format, including tools, tool results, thinking history, `reasoning_effort`, and `thinking`.
+DeepSeek V4 Pro and Flash are OpenAI-compatible in OpenCode Go. claudepass transforms Claude Code's Anthropic request into OpenAI Chat Completions format, including tools, tool results, thinking history, `reasoning_effort`, and `thinking`.
 
 For Claude Code and OpenCode-style agent workflows, DeepSeek V4 supports max thinking mode with:
 
@@ -147,7 +147,7 @@ Default → Use Kimi K2.6 (1,850 req/$12, ★★★★★) or Qwen3.6 Plus (3,30
   - Long conversations
   - Multi-file context
 - **When to Use:** When you need 1M context but want to minimize cost
-- **Note:** Uses Anthropic endpoint - oc-cc-universal handles this automatically
+- **Note:** Uses Anthropic endpoint - claudepass handles this automatically
 
 ### Balanced Models (Quality + Cost)
 
@@ -360,5 +360,5 @@ Critical review → GLM-5.1 (rarely)
 ## See Also
 
 - [OpenCode Go Documentation](https://opencode.ai/docs/go/)
-- [oc-cc-universal Configuration](../configs/config.example.json)
+- [claudepass Configuration](../configs/config.example.json)
 - [README.md](../README.md) for setup instructions
