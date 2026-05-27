@@ -3,5 +3,4 @@ bin/
 *.pid
 .env
 .tmp/
-claudepass
-claudepass
+/claudepass
