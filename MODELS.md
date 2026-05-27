@@ -1,8 +1,8 @@
-# OpenCode Go Models Guide
+# OpenAI-compatible Models Guide
 
-Comprehensive guide to OpenCode Go models with capabilities, costs, and routing recommendations.
+Comprehensive guide to OpenAI-compatible models with capabilities, costs, and routing recommendations.
 
-**Source:** [OpenCode Go Documentation](https://opencode.ai/docs/go/)
+**Source:** [OpenAI-compatible Documentation](https://github.com/adhney/claudepass)
 
 ## Quick Cost Comparison
 
@@ -27,14 +27,14 @@ Comprehensive guide to OpenCode Go models with capabilities, costs, and routing 
 
 | Models                                                                                                             | Endpoint                                         | Format                   |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ------------------------ |
-| GLM-5, GLM-5.1, Kimi K2.6, Kimi K2.5, MiMo-V2-Pro, MiMo-V2-Omni, Qwen3.5 Plus, Qwen3.6 Plus, DeepSeek V4 Pro/Flash | `https://opencode.ai/zen/go/v1/chat/completions` | OpenAI-compatible        |
-| **MiniMax M2.5, MiniMax M2.7**                                                                                     | `https://opencode.ai/zen/go/v1/messages`         | **Anthropic-compatible** |
+| GLM-5, GLM-5.1, Kimi K2.6, Kimi K2.5, MiMo-V2-Pro, MiMo-V2-Omni, Qwen3.5 Plus, Qwen3.6 Plus, DeepSeek V4 Pro/Flash | `https://api.openai.com/v1` | OpenAI-compatible        |
+| **MiniMax M2.5, MiniMax M2.7**                                                                                     | `https://api.openai.com/v1/messages`         | **Anthropic-compatible** |
 
 **Why this matters:** MiniMax models expect Anthropic format natively. claudepass detects MiniMax models and routes them to the correct endpoint automatically without transformation. This means MiniMax models work seamlessly with Claude Code.
 
-DeepSeek V4 Pro and Flash are OpenAI-compatible in OpenCode Go. claudepass transforms Claude Code's Anthropic request into OpenAI Chat Completions format, including tools, tool results, thinking history, `reasoning_effort`, and `thinking`.
+DeepSeek V4 Pro and Flash are OpenAI-compatible in OpenAI-compatible. claudepass transforms Claude Code's Anthropic request into OpenAI Chat Completions format, including tools, tool results, thinking history, `reasoning_effort`, and `thinking`.
 
-For Claude Code and OpenCode-style agent workflows, DeepSeek V4 supports max thinking mode with:
+For Claude Code and OpenAI-compatible-style agent workflows, DeepSeek V4 supports max thinking mode with:
 
 ```json
 {
@@ -167,7 +167,7 @@ Default → Use Kimi K2.6 (1,850 req/$12, ★★★★★) or Qwen3.6 Plus (3,30
 
   ```json
   {
-    "provider": "opencode-go",
+    "provider": "openai",
     "model_id": "deepseek-v4-pro",
     "temperature": 0.1,
     "max_tokens": 8192,
@@ -193,7 +193,7 @@ Default → Use Kimi K2.6 (1,850 req/$12, ★★★★★) or Qwen3.6 Plus (3,30
 
   ```json
   {
-    "provider": "opencode-go",
+    "provider": "openai",
     "model_id": "deepseek-v4-flash",
     "temperature": 0.1,
     "max_tokens": 4096,
@@ -277,7 +277,7 @@ Default → Use Kimi K2.6 (1,850 req/$12, ★★★★★) or Qwen3.6 Plus (3,30
 
 ## Usage Limits
 
-OpenCode Go limits:
+OpenAI-compatible limits:
 
 - **5-hour limit:** $12 of usage
 - **Weekly limit:** $30 of usage
@@ -355,10 +355,10 @@ Critical review → GLM-5.1 (rarely)
 2. **Reserve GLM-5.1 for critical tasks only** — 880 req/$12 drains budget fast
 3. **Use Qwen3.5 Plus for simple operations** — 10,200 req/$12 is unbeatable
 4. **MiniMax M2.5 for long context** — 6,300 req/$12 with 1M context is amazing value
-5. **Monitor your usage** in the [OpenCode console](https://opencode.ai/auth)
+5. **Monitor your usage** in the [OpenAI-compatible console](https://platform.openai.com/)
 
 ## See Also
 
-- [OpenCode Go Documentation](https://opencode.ai/docs/go/)
+- [OpenAI-compatible Documentation](https://github.com/adhney/claudepass)
 - [claudepass Configuration](../configs/config.example.json)
 - [README.md](../README.md) for setup instructions

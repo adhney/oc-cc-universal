@@ -274,7 +274,7 @@ jobs:
 
           cat > Formula/claudepass.rb << RUBY
           class OcGoCc < Formula
-            desc "Proxy Claude Code requests to OpenCode Go API"
+            desc "Proxy Claude Code requests to OpenAI-compatible API"
             homepage "https://github.com/${REPO}"
             version "${VERSION}"
 
@@ -317,8 +317,8 @@ jobs:
                   1. Initialize configuration:
                      claudepass init
 
-                  2. Set your OpenCode Go API key:
-                     export CLAUDEPASS_API_KEY=sk-opencode-your-key
+                  2. Set your OpenAI-compatible API key:
+                     export CLAUDEPASS_API_KEY=sk-your-upstream-key
 
                   3. Start the proxy:
                      claudepass serve
@@ -397,7 +397,7 @@ jobs:
           cat > bucket/claudepass.json << JSON
           {
               "version": "${VERSION}",
-              "description": "Proxy Claude Code requests to OpenCode Go API",
+              "description": "Proxy Claude Code requests to OpenAI-compatible API",
               "homepage": "https://github.com/${REPO}",
               "license": "AGPL-3.0-only",
               "architecture": {

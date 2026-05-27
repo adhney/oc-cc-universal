@@ -52,5 +52,5 @@ Move-Item -Path "claudepass.exe" -Destination "$env:LOCALAPPDATA\Microsoft\Windo
 
 ## Requirements
 
-- An [OpenCode Go](https://opencode.ai/auth) subscription and API key
+- An [OpenAI-compatible](https://platform.openai.com/) subscription and API key
 - Go 1.21+ (only needed if building from source)

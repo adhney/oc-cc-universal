@@ -4,7 +4,7 @@ A universal Go proxy that lets you use **any OpenAI-compatible backend** with [C
 
 `claudepass` sits between Claude Code and your backend, intercepting Anthropic API requests, transforming them to OpenAI format, and forwarding them upstream. Claude Code thinks it's talking to Anthropic — but your requests go to whatever backend you choose.
 
-Works with: **OpenCode Go**, **Ollama**, **OpenRouter**, **vLLM**, **LiteLLM**, **Azure OpenAI**, **GCP Vertex AI**, or any `/v1/chat/completions` endpoint.
+Works with: **OpenAI-compatible**, **Ollama**, **OpenRouter**, **vLLM**, **LiteLLM**, **Azure OpenAI**, **GCP Vertex AI**, or any `/v1/chat/completions` endpoint.
 
 ## Why?
 

@@ -31,7 +31,7 @@ Run a single test: `go test ./internal/router/ -v`
 
 ```
 ┌─────────────┐     Anthropic API      ┌─────────────┐     OpenAI API       ┌─────────────┐
-│  Claude Code ├──────────────────────►│  claudepass    ├────────────────────►│  OpenCode Go │
+│  Claude Code ├──────────────────────►│  claudepass    ├────────────────────►│  OpenAI-compatible │
 │  (CLI)       │  POST /v1/messages   │  (Proxy)     │  /chat/completions  │  (Upstream)  │
 │              │◄──────────────────────┤              │◄────────────────────┤              │
 └─────────────┘   Anthropic SSE        └─────────────┘   OpenAI SSE          └─────────────┘
@@ -40,7 +40,7 @@ Run a single test: `go test ./internal/router/ -v`
 1. Claude Code sends a request in [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) format
 2. claudepass parses the request, counts tokens, and selects a model via routing rules
 3. The request is transformed to [OpenAI Chat Completions](https://platform.openai.com/docs/api-reference/chat) format
-4. The transformed request is sent to OpenCode Go's endpoint
+4. The transformed request is sent to OpenAI-compatible's endpoint
 5. The response (streaming or non-streaming) is transformed back to Anthropic format
 6. Claude Code receives the response as if it came from Anthropic directly
 
@@ -59,13 +59,13 @@ Run a single test: `go test ./internal/router/ -v`
 
 ### DeepSeek V4 Thinking Mode
 
-DeepSeek V4 Pro and Flash use the OpenAI-compatible `/chat/completions` endpoint through OpenCode Go. They support thinking mode and configurable reasoning effort.
+DeepSeek V4 Pro and Flash use the OpenAI-compatible `/chat/completions` endpoint through OpenAI-compatible. They support thinking mode and configurable reasoning effort.
 
 For Claude Code and other agentic coding workflows, configure DeepSeek V4 models with:
 
 ```json
 {
-  "provider": "opencode-go",
+  "provider": "openai",
   "model_id": "deepseek-v4-pro",
   "max_tokens": 8192,
   "reasoning_effort": "max",
@@ -75,7 +75,7 @@ For Claude Code and other agentic coding workflows, configure DeepSeek V4 models
 }
 ```
 
-`claudepass` forwards these fields to OpenCode Go as OpenAI Chat Completions parameters:
+`claudepass` forwards these fields to OpenAI-compatible as OpenAI Chat Completions parameters:
 
 - `reasoning_effort`: controls DeepSeek V4 thinking effort (`high` or `max`)
 - `thinking`: enables or disables DeepSeek V4 thinking mode
@@ -106,7 +106,7 @@ internal/
 │   ├── response.go             OpenAI → Anthropic response transformation
 │   └── stream.go               Real-time SSE stream transformation
 ├── client/
-│   └── opencode.go             OpenCode Go HTTP client
+│   └── upstream.go             OpenAI-compatible HTTP client
 ├── daemon/
 │   ├── launchd.go              macOS launchd plist management
 │   ├── background.go           Background daemon fork
@@ -123,7 +123,7 @@ configs/
 ### Key Design Decisions
 
 - **Polymorphic field handling**: Anthropic's `system` and `content` fields accept both strings and arrays. We use `json.RawMessage` with accessor methods (`SystemText()`, `ContentBlocks()`) to handle both formats correctly.
-- **Real-time stream proxying**: SSE events are transformed in-flight, not buffered. This means Claude Code sees responses as they arrive from OpenCode Go.
+- **Real-time stream proxying**: SSE events are transformed in-flight, not buffered. This means Claude Code sees responses as they arrive from OpenAI-compatible.
 - **Circuit breaker per model**: Each model gets its own circuit breaker. After 3 consecutive failures, the model is skipped for 30 seconds, then tested again.
 - **Environment variable interpolation**: Config values like `"${CLAUDEPASS_API_KEY}"` are resolved at load time, so you never need to put secrets in the config file.
 

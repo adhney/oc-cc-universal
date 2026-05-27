@@ -25,8 +25,8 @@ export CLAUDEPASS_LOG_LEVEL=debug
 All models in the fallback chain returned errors. Check:
 
 1. Your API key is valid: `claudepass validate`
-2. You haven't exceeded your [usage limits](https://opencode.ai/auth)
-3. The OpenCode Go service is reachable: `curl -H "Authorization: Bearer $CLAUDEPASS_API_KEY" https://opencode.ai/zen/go/v1/models`
+2. You haven't exceeded your [usage limits](https://platform.openai.com/)
+3. The OpenAI-compatible service is reachable: `curl -H "Authorization: Bearer $CLAUDEPASS_API_KEY" https://api.openai.com/zen/go/v1/models`
 
 ## Connection Refused
 
@@ -61,6 +61,6 @@ CLAUDEPASS_LOG_LEVEL=debug claudepass serve
 This logs:
 
 - Raw Anthropic request body from Claude Code
-- Transformed OpenAI request sent to OpenCode Go
+- Transformed OpenAI request sent to OpenAI-compatible
 - Raw OpenAI response received
 - SSE stream events during streaming

@@ -18,7 +18,7 @@ Run a single test: `go test ./internal/router/ -v`
 
 ## Architecture
 
-**Purpose:** claudepass is a proxy server that sits between Claude Code and OpenCode Go. It intercepts Anthropic API requests, transforms them to OpenAI Chat Completions format, forwards them to OpenCode Go, and transforms responses back to Anthropic SSE.
+**Purpose:** claudepass is a proxy server that sits between Claude Code and OpenAI-compatible. It intercepts Anthropic API requests, transforms them to OpenAI Chat Completions format, forwards them to OpenAI-compatible, and transforms responses back to Anthropic SSE.
 
 **Model routing is config-driven, not code-driven.** Models are defined in `~/.config/claudepass/config.json` — adding a new model does not require code changes (except for `IsAnthropicModel()` if the new model uses the Anthropic endpoint). The router in `internal/router/` selects models by matching request content against scenario patterns defined in `scenarios.go`.
 
@@ -27,7 +27,7 @@ Run a single test: `go test ./internal/router/ -v`
 - OpenAI endpoint (`/v1/chat/completions`) — used by most models (GLM, Kimi, MiMo, Qwen)
 - Anthropic endpoint (`/v1/messages`) — used only by MiniMax models
 
-`internal/client/opencode.go` routes by model ID via `IsAnthropicModel()`.
+`internal/client/upstream.go` routes by model ID via `IsAnthropicModel()`.
 
 **Scenario detection priority** (`internal/router/scenarios.go`):
 

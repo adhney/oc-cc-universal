@@ -25,10 +25,10 @@ var version = "dev"
 func main() {
 	rootCmd := &cobra.Command{
 		Use:   appName,
-		Short: "Proxy Claude Code requests to OpenCode Go API",
-		Long: `claudepass is a CLI proxy tool that allows you to use your OpenCode Go
-subscription with Claude Code. It intercepts Claude Code's Anthropic API requests,
-transforms them to OpenAI format, and forwards them to OpenCode Go.
+		Short: "Proxy Claude Code requests to any OpenAI-compatible API",
+		Long: `claudepass is a CLI proxy tool that allows you to use any OpenAI-compatible
+backend with Claude Code. It intercepts Claude Code's Anthropic API requests,
+transforms them to OpenAI format, and forwards them upstream.
 
 Configuration is stored at ~/.config/claudepass/config.json`,
 		Version: version,
@@ -239,7 +239,7 @@ func initCmd() *cobra.Command {
 			}
 
 			fmt.Printf("Created default config at %s\n", configPath)
-			fmt.Println("Edit the file and add your OpenCode Go API key.")
+			fmt.Println("Edit the file and add your upstream API key.")
 			return nil
 		},
 	}
@@ -281,28 +281,18 @@ func validateCmd() *cobra.Command {
 func modelsCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "models",
-		Short: "List available OpenCode Go models",
+		Short: "List example OpenAI-compatible models",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Available OpenCode Go models:")
+			fmt.Println("Example OpenAI-compatible model configurations:")
 			fmt.Println()
-			fmt.Println("  Model ID           Endpoint Type")
+			fmt.Println("  Model ID           Provider/Type")
 			fmt.Println("  ─────────────────────────────────────────")
-			fmt.Println("  glm-5.1            OpenAI-compatible")
-			fmt.Println("  glm-5              OpenAI-compatible")
-			fmt.Println("  kimi-k2.6          OpenAI-compatible")
-			fmt.Println("  kimi-k2.5          OpenAI-compatible")
-			fmt.Println("  mimo-v2.5-pro      OpenAI-compatible")
-			fmt.Println("  mimo-v2.5          OpenAI-compatible")
-			fmt.Println("  mimo-v2-pro        OpenAI-compatible")
-			fmt.Println("  mimo-v2-omni       OpenAI-compatible")
-			fmt.Println("  minimax-m2.7       Anthropic-compatible")
-			fmt.Println("  minimax-m2.5       Anthropic-compatible")
-			fmt.Println("  deepseek-v4-pro    OpenAI-compatible")
-			fmt.Println("  deepseek-v4-flash  OpenAI-compatible")
-			fmt.Println("  qwen3.6-plus       OpenAI-compatible")
-			fmt.Println("  qwen3.5-plus       OpenAI-compatible")
+			fmt.Println("  deepseek-chat      DeepSeek Chat / API")
+			fmt.Println("  gpt-4o             OpenAI GPT-4o")
+			fmt.Println("  qwen-max           Alibaba Qwen")
+			fmt.Println("  llama3             Local Ollama")
 			fmt.Println()
-			fmt.Println("Use these model IDs in your config.json file.")
+			fmt.Println("Use your upstream provider's model IDs in your config.json file.")
 		},
 	}
 }
@@ -388,38 +378,38 @@ func getDefaultConfig() string {
   "respect_requested_model": false,
   "models": {
     "background": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "qwen3.5-plus",
       "temperature": 0.5,
       "max_tokens": 2048
     },
     "default": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "kimi-k2.6",
       "temperature": 0.7,
       "max_tokens": 4096
     },
     "long_context": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "minimax-m2.5",
       "temperature": 0.7,
       "max_tokens": 16384,
       "context_threshold": 80000
     },
     "think": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "glm-5",
       "temperature": 0.7,
       "max_tokens": 8192
     },
     "complex": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "glm-5.1",
       "temperature": 0.7,
       "max_tokens": 4096
     },
     "fast": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "qwen3.6-plus",
       "temperature": 0.7,
       "max_tokens": 4096
@@ -427,28 +417,28 @@ func getDefaultConfig() string {
   },
   "fallbacks": {
     "background": [
-      { "provider": "opencode-go", "model_id": "qwen3.6-plus" },
-      { "provider": "opencode-go", "model_id": "minimax-m2.5" }
+      { "provider": "openai", "model_id": "qwen3.6-plus" },
+      { "provider": "openai", "model_id": "minimax-m2.5" }
     ],
     "default": [
-      { "provider": "opencode-go", "model_id": "mimo-v2-pro" },
-      { "provider": "opencode-go", "model_id": "qwen3.6-plus" }
+      { "provider": "openai", "model_id": "mimo-v2-pro" },
+      { "provider": "openai", "model_id": "qwen3.6-plus" }
     ],
     "long_context": [
-      { "provider": "opencode-go", "model_id": "minimax-m2.7" },
-      { "provider": "opencode-go", "model_id": "kimi-k2.6" }
+      { "provider": "openai", "model_id": "minimax-m2.7" },
+      { "provider": "openai", "model_id": "kimi-k2.6" }
     ],
     "think": [
-      { "provider": "opencode-go", "model_id": "kimi-k2.6" },
-      { "provider": "opencode-go", "model_id": "mimo-v2-pro" }
+      { "provider": "openai", "model_id": "kimi-k2.6" },
+      { "provider": "openai", "model_id": "mimo-v2-pro" }
     ],
     "complex": [
-      { "provider": "opencode-go", "model_id": "glm-5" },
-      { "provider": "opencode-go", "model_id": "kimi-k2.6" }
+      { "provider": "openai", "model_id": "glm-5" },
+      { "provider": "openai", "model_id": "kimi-k2.6" }
     ],
     "fast": [
-      { "provider": "opencode-go", "model_id": "qwen3.5-plus" },
-      { "provider": "opencode-go", "model_id": "minimax-m2.5" }
+      { "provider": "openai", "model_id": "qwen3.5-plus" },
+      { "provider": "openai", "model_id": "minimax-m2.5" }
     ]
   },
   "upstream": {

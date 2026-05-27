@@ -17,38 +17,38 @@ Override with `CLAUDEPASS_CONFIG` environment variable.
 
   "models": {
     "default": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "kimi-k2.6",
       "temperature": 0.7,
       "max_tokens": 4096
     },
     "background": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "qwen3.5-plus",
       "temperature": 0.5,
       "max_tokens": 2048
     },
     "think": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "glm-5.1",
       "temperature": 0.7,
       "max_tokens": 8192
     },
     "complex": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "glm-5.1",
       "temperature": 0.7,
       "max_tokens": 4096
     },
     "long_context": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "minimax-m2.7",
       "temperature": 0.7,
       "max_tokens": 16384,
       "context_threshold": 80000
     },
     "fast": {
-      "provider": "opencode-go",
+      "provider": "openai",
       "model_id": "qwen3.6-plus",
       "temperature": 0.7,
       "max_tokens": 4096
@@ -57,17 +57,17 @@ Override with `CLAUDEPASS_CONFIG` environment variable.
 
   "fallbacks": {
     "default": [
-      { "provider": "opencode-go", "model_id": "glm-5" },
-      { "provider": "opencode-go", "model_id": "qwen3.6-plus" }
+      { "provider": "openai", "model_id": "glm-5" },
+      { "provider": "openai", "model_id": "qwen3.6-plus" }
     ],
-    "think": [{ "provider": "opencode-go", "model_id": "glm-5" }],
-    "complex": [{ "provider": "opencode-go", "model_id": "glm-5" }],
-    "long_context": [{ "provider": "opencode-go", "model_id": "minimax-m2.5" }],
-    "fast": [{ "provider": "opencode-go", "model_id": "qwen3.5-plus" }]
+    "think": [{ "provider": "openai", "model_id": "glm-5" }],
+    "complex": [{ "provider": "openai", "model_id": "glm-5" }],
+    "long_context": [{ "provider": "openai", "model_id": "minimax-m2.5" }],
+    "fast": [{ "provider": "openai", "model_id": "qwen3.5-plus" }]
   },
 
-  "opencode_go": {
-    "base_url": "https://opencode.ai/zen/go/v1/chat/completions",
+  "upstream": {
+    "base_url": "https://api.openai.com/v1",
     "timeout_ms": 300000
   },
 
@@ -84,11 +84,11 @@ Environment variables override config file values. Config values also support `$
 
 | Variable                | Description                                 | Default                                          |
 | ----------------------- | ------------------------------------------- | ------------------------------------------------ |
-| `CLAUDEPASS_API_KEY`      | OpenCode Go API key (**required**)          | —                                                |
+| `CLAUDEPASS_API_KEY`      | OpenAI-compatible API key (**required**)          | —                                                |
 | `CLAUDEPASS_CONFIG`       | Custom config file path                     | `~/.config/claudepass/config.json`                 |
 | `CLAUDEPASS_HOST`         | Proxy listen host                           | `127.0.0.1`                                      |
 | `CLAUDEPASS_PORT`         | Proxy listen port                           | `3456`                                           |
-| `CLAUDEPASS_BASE_URL` | OpenCode Go API endpoint                    | `https://opencode.ai/zen/go/v1/chat/completions` |
+| `CLAUDEPASS_BASE_URL` | OpenAI-compatible API endpoint                    | `https://api.openai.com/v1` |
 | `CLAUDEPASS_LOG_LEVEL`    | Log level: `debug`, `info`, `warn`, `error` | `info`                                           |
 
 ## Hot Reload
